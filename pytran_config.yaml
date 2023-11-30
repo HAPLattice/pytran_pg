@@ -1,0 +1,44 @@
+version: 1
+# Transforms are of two types: by name and by type
+# Name transforms are always done first. Type is only done on no-match of name transform
+# The transform_file key specifies a python file of functions that are transforms
+# Transforms are referenced by the function name
+default_transform:
+  name:
+  type:
+    uuid: str
+  transform_file:
+schemata:
+  # schemata keys are the schema names
+  public:
+    # <schema> keys are table names
+    job_types:
+      # Keys for tables are: 
+      #   columns which are mappings of <col_name>: <col_type>
+      #   output_map which is a mapping of the post-transform record shape
+      #   transform_map which is a mapping in the same form as the default_transform
+      columns:
+        id: uuid
+        value: str
+        created_at: datetime
+      output_map:
+        id: 
+          name: id
+          type: str
+        value: 
+          name: value
+          type: str
+        created_at: 
+          name: created_at
+          type: timestamptz
+      transform_map:
+        name:
+        type:
+        transform_file:
+    roles:
+      columns:
+        id: uuid
+        value: text
+      output_map:
+      transform_map:
+      trandform_file:
